@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+<div class="post">
+  <h4 class="title"><a href="">Projects</a></h4>
+ 
+  <div style="clear: both;">&nbsp;</div>
+  <div class="entry">
+    <table style="width:100%" class="border-bottom mb-4">
+
+      <tr class="border-bottom mb-4">
+        <th>Project Name</th>
+        <th>Start</th>
+        <th>Manager</th>
+        <th>Status</th>
+      </tr>
+
+      {% for project in projects %}     
+      <tr>
+        <td> <a class="article-title" href="{{ url_for('project', project_id=project.id) }}">{{ project.name }}</a></td>
+        <td>{{ project.start.strftime('%d-%m-%Y') }}</td>
+        <td>{{ project.mngr }}</td>
+        <td>{{ project.status }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+
+    <div>
+      <a class="comments more" href="{{ url_for('new_project') }}">Add Project</a>
+    </div>
+  </div>
+</div>
+
+<div class="post">
+  <h4 class="title"><a href="">Bugs</a></h4>
+ 
+  <div style="clear: both;">&nbsp;</div>
+  <div class="entry">
+    <table style="width:100%" class="border-bottom mb-4">
+
+      <tr class="border-bottom mb-4">
+        <th>Bug Name</th>
+        <th>Date</th>
+        <th>Project</th>
+        <th>Status</th>
+        <th>Priority</th>
+      </tr>
+
+      {% for bug in bugs %}
+      <tr>
+          <td><a class="article-title" href="{{ url_for('bug', bug_id=bug.id) }}">{{ bug.name }}</a></td>
+          <td>{{ bug.date.strftime('%d-%m-%Y') }}</td>
+          <td>{{ bug.prid }}</td>
+          <td>{{ bug.status }}</td>
+          <td>{{ bug.prio }}</td>
+      </tr>
+      {% endfor %}
+  
+    </table>
+
+    <div>
+      <a class="comments more" href="{{ url_for('new_bug') }}">Add Bug</a>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1 border-bottom mb-4" href="{{ url_for('new_project') }}">Add Project</a>
+</div>
+<table style="width:100%" class="border-bottom mb-4">
+    <tr class="border-bottom mb-4">
+      <th>Project Name</th>
+      <th>Start</th>
+      <th>Manager</th>
+      <th>Status</th>
+    </tr>
+    {% for project in projects %}
+   
+    <tr>
+      <td> <a class="article-title" href="{{ url_for('project', project_id=project.id) }}">{{ project.name }}</a></td>
+      <td>{{ project.start.strftime('%d-%m-%Y') }}</td>
+      <td>{{ project.mngr }}</td>
+      <td>{{ project.status }}</td>
+    </tr>
+    
+   
+    {% endfor %}
+</table>
+
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1 border-bottom mb-4" href="{{ url_for('new_bug') }}">Add Bug</a>
+</div>
+<table style="width:100%" class="border-bottom mb-4">
+    <tr class="border-bottom mb-4">
+      <th>Bug Name</th>
+      <th>Date</th>
+      <th>Project</th>
+      <th>Status</th>
+      <th>Priority</th>
+    </tr>
+    {% for bug in bugs %}
+    <tr>
+        <td>{{ bug.name }}</td>
+        <td>{{ bug.date.strftime('%d-%m-%Y') }}</td>
+        <td>{{ bug.pr_name }}</td>
+        <td>{{ bug.status }}</td>
+        <td>{{ bug.prio }}</td>
+    </tr>
+    {% endfor %}
+</table>
+-->
+
+{% endblock content %}

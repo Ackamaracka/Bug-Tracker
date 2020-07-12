@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="post">
+  <h2 class="title"><a href="">{{ project.name }}</a></h2>
+  <p class="meta"><span class="date">Posted on {{project.start|strftime}}</span><span class="posted">Status <a href="#">{{ project.status }}</a></span></p>
+  <div style="clear: both;">&nbsp;</div>
+  <div class="entry">
+    <p>{{ project.pitch }}</p>
+
+    {% if current_user.username == "Admin" %}
+    <p class="links"><a href="{{ url_for('update_project', project_id=project.id) }}" class="comments more">Update</a><a href="" class="comments btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</a></p>
+    {% endif %}
+  </div>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('delete_project', project_id=project.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
